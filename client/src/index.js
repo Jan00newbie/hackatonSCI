@@ -1,25 +1,26 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import {
-    BrowserRouter as Router
-}  from 'react-router-dom';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
+import React from 'react'
+import { render } from 'react-dom'
 
-import ContactProvider from './context/contact/ContactState';
-import AuthProvider from './context/auth/AuthState'
-import AlertProvider from './context/alert/AlertState'
+import App from './components/App'
+import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
+import { lightGreen, red } from '@material-ui/core/colors'
 
-ReactDOM.render(
-    <AlertProvider>
-        <AuthProvider>
-            <ContactProvider>
-                <Router>
-                    <App />
-                </Router>
-            </ContactProvider>
-        </AuthProvider>
-    </AlertProvider>,
-document.getElementById('root'));
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: red[600]
+    },
+    secondary: {
+      main: lightGreen[500]
+    }
+  }
+})
 
-serviceWorker.unregister();
+console.log(lightGreen)
+
+render(
+  <MuiThemeProvider theme={theme}>
+    <App />
+  </MuiThemeProvider>,
+  document.getElementById('root')
+)
