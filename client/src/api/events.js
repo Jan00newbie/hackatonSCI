@@ -1,57 +1,57 @@
 export default [
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
+        date: '19:00 12-24-2019'
+    },
+    {   
+        name: 'mulon',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulon',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Szczecin',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Hoiniarz',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     },
     {   
         name: 'Gitara',
-        location: 'Gryfice',
-        date: '19:00 12-24-2019'
-    },
-    {   
-        name: 'Gitara',
-        location: 'Gryfice',
+        city: 'Mulonidium',
         date: '19:00 12-24-2019'
     }
 ]

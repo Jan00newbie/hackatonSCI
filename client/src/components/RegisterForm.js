@@ -129,7 +129,7 @@ export default ({modalSwap}) => {
         <Button variant="contained">Submit</Button>
       </div>
       <div className={classes.buttonContainer}>
-        <Button size="small" onClick={modalSwap} >I have an account</Button>
+        <Button type="button" size="small" onClick={modalSwap} >I have an account</Button>
       </div>
     </form>
   );

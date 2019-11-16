@@ -6,9 +6,11 @@ import {
   Card,
   CardContent,
   CardMedia,
+  CardActionArea,
   TextField
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
+import EventView from './EventView'
 
 import api_events from '../api/events.js'
 import jotpeg from '../img/pety1.jpg'
@@ -33,6 +35,11 @@ const useStyles = makeStyles(theme => ({
   event: {
     padding: theme.spacing(0.5)
   },
+  button: {
+    position: 'absolute',
+    width: '250%',
+    height: '100%'
+  },
   card: {
     display: 'flex',
     backgroundColor: theme.palette.secondary.light,
@@ -40,7 +47,9 @@ const useStyles = makeStyles(theme => ({
   },
   details: {
     display: 'flex',
-    flexDirection: 'column'
+    flexDirection: 'column',
+    height: 150,
+    position: 'relative'
   },
   content: {
     flex: '1 0 auto',
@@ -64,12 +73,21 @@ const useStyles = makeStyles(theme => ({
 export default () => {
   const classes = useStyles()
   const [events, setEvents] = useState([])
+  const [open, setOpen] = useState(false)
   const [search, setSearch] = useState({
     name: '',
     city: '',
     date: new Date().toISOString().substr(0, 10),
     slots: 0
   })
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   const updateFilters = evt => {
     setSearch({ ...search, [evt.target.name]: evt.target.value })
@@ -81,39 +99,47 @@ export default () => {
   }, [])
 
   return (
+    <>
     <Grid className={classes.container} container spacing={3} justify="center">
-      <Grid item xs={12} md={5}>
+      <Grid item xs={12} lg={5}>
         <Paper className={classes.header}>
           <Typography variant="h4" component="h2" align="center">
-            Availalble Events: {events.length}
+            Available Events: {events.length}
           </Typography>
         </Paper>
         <Grid className={classes.eventsContainer} container spacing={3}>
           {events.map((event, idx) => {
             if (
-              (search.name != '' &&
-                new RegExp(search.name).exec(event.name) == null) ||
-              (search.city != '' &&
-                new RegExp(search.city).exec(event.name) == null) ||
-              (search.date != '' &&
+              (search.name !== '' &&
+                new RegExp(search.name.toLowerCase()).exec(
+                  event.name.toLowerCase()
+                ) === null) ||
+              (search.city !== '' &&
+                new RegExp(search.city.toLowerCase()).exec(
+                  event.city.toLowerCase()
+                ) === null) ||
+              (search.date !== '' &&
                 new Date(event.date) <= new Date(search.city)) ||
-              (search.slots != 0 && event.slots >= search.slots)
+              (search.slots !== 0 && event.slots >= search.slots)
             )
-              return null
-            else 
+              return ''
+            else
               return (
-                <Grid key={idx} xs={12} md={6} item className={classes.event}>
+                <Grid key={idx} xs={12} lg={6} item className={classes.event}>
                   <Card className={classes.card}>
                     <div className={classes.details}>
-                      <CardContent className={classes.content}>
-                        <Typography component="h5" variant="h5">
-                          {event.location}
-                        </Typography>
-                        <Typography variant="subtitle1" color="textSecondary">
-                          {event.date}
-                        </Typography>
-                      </CardContent>
-                      <div className={classes.controls}></div>
+                      <CardActionArea className={classes.button} onClick={handleOpen}></CardActionArea>
+                        <CardContent className={classes.content}>
+                          <Typography component="h6" variant="h6">
+                            {event.name}
+                          </Typography>
+                          <Typography variant="subtitle1" color="textSecondary">
+                            {event.city}
+                          </Typography>
+                          <Typography variant="subtitle2" color="textSecondary">
+                            {event.date}
+                          </Typography>
+                        </CardContent>
                     </div>
                     <CardMedia className={classes.cover} image={jotpeg} />
                   </Card>
@@ -169,5 +195,7 @@ export default () => {
         </Paper>
       </Grid>
     </Grid>
+    <EventView handleClose={handleClose} open={open} />
+    </>
   )
 }

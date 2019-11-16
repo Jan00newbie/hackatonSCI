@@ -1,10 +1,11 @@
 import React, { useState } from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import { Modal, Toolbar, CssBaseline, Typography } from '@material-ui/core'
+import { Toolbar, CssBaseline } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import AppBarComponent from './AppBar'
+import AppBar from './AppBar'
 import Home from './Home'
 import Events from './Events'
+import NewEvent from './NewEvent'
 import About from './About'
 import LoginComponent from './LoginForm'
 import RegisterComponent from './RegisterForm'
@@ -36,11 +37,11 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: 'white',
     padding: theme.spacing(3)
   },
-  svgImage:{
-    position: "absolute",
-    top: "0",
-    bottom: "0",
-    zIndex: "1"
+  svgImage: {
+    position: 'absolute',
+    top: '0',
+    bottom: '0',
+    zIndex: '1'
   }
 }))
 
@@ -73,7 +74,7 @@ export default () => {
   return (
     <Router>
       <CssBaseline />
-      <AppBarComponent
+      <AppBar
         modalControls={{
           openLogin: loginModalOpen,
           openRegister: registerModalOpen
@@ -81,42 +82,54 @@ export default () => {
       />
 
       <div className={classes.root}>
-      <svg width="100%" height="446" viewBox="0 0 100% 446" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes.svgImage}>
-<path d="M0 21H1948.71C1948.71 21 2309.36 343.753 1948.71 335.246C1588.07 326.74 1475.74 86.051 973.003 335.246C470.262 584.442 379.932 335.246 0 335.246V21Z" fill="white"/>
-<path d="M0 0H1948.71C1948.71 0 2309.36 322.753 1948.71 314.246C1588.07 305.74 1475.74 65.051 973.003 314.246C470.262 563.442 379.932 314.246 0 314.246V0Z" fill="#8BC34C"/>
-</svg>
-<AlertsList />
+        <svg
+          width="100%"
+          height="446"
+          viewBox="0 0 100% 446"
+          fill="none"
+          xmlns="http://www.w3.org/2000/svg"
+          className={classes.svgImage}
+        >
+          <path
+            d="M0 21H1948.71C1948.71 21 2309.36 343.753 1948.71 335.246C1588.07 326.74 1475.74 86.051 973.003 335.246C470.262 584.442 379.932 335.246 0 335.246V21Z"
+            fill="white"
+          />
+          <path
+            d="M0 0H1948.71C1948.71 0 2309.36 322.753 1948.71 314.246C1588.07 305.74 1475.74 65.051 973.003 314.246C470.262 563.442 379.932 314.246 0 314.246V0Z"
+            fill="#8BC34C"
+          />
+        </svg>
+        <AlertsList />
         <Toolbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />
-          <Route path="/login" render={() => <h1>Home</h1>} />
-          <Route path="/register" render={() => <h1>Home</h1>} />
-          <Route path="/event/:id" render={() => <h1>Home</h1>} />
+          <Route path="/newevent" component={NewEvent} />
           <Route path="/about" component={About} />
           <Route path="/profile" component={Profile} />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
       </div>
-      
-      <AuthForm 
+
+      <AuthForm
         onClose={modalClose}
         classes={classes}
-        type='login'
+        type="login"
         modal={modal}
-        text='Log In'>
+        text="Log In"
+      >
         <LoginComponent modalSwap={modalSwap} />
       </AuthForm>
 
-      <AuthForm 
+      <AuthForm
         onClose={modalClose}
         classes={classes}
-        type='register'
+        type="register"
         modal={modal}
-        text='Register'>
+        text="Register"
+      >
         <RegisterComponent modalSwap={modalSwap} />
       </AuthForm>
-      
     </Router>
   )
 }

@@ -6,7 +6,6 @@ import {
   Toolbar,
   Slide,
   Hidden,
-  Image,
   useScrollTrigger
 } from '@material-ui/core'
 import logo from '../img/logoBig.png'
