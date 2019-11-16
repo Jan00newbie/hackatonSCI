@@ -1,34 +1,34 @@
-import React from "react";
-import { Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import enjoy from "../img/stick-man.png";
+import React from 'react'
+import { Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import enjoy from '../img/stick-man.png'
 
 const useStyles = makeStyles(theme => ({
   descOne: {
-    fontSize: "150px",
-    color: "#fff",
-    textShadow: "5px 5px 1px black",
-    position: "absolute",
-    top: "0px",
-    left: "50px"
+    fontSize: '150px',
+    color: '#fff',
+    textShadow: '5px 5px 1px black',
+    position: 'absolute',
+    top: '0px',
+    left: '50px'
   },
   people: {
-    position: "absolute",
-    bottom: "0px",
-    left: "200px"
+    position: 'absolute',
+    bottom: '0px',
+    left: '200px'
   },
   descTwo: {
-    fontSize: "150px",
-    color: "#fff",
-    textShadow: "5px 5px 1px black",
-    position: "absolute",
-    bottom: "100px",
-    right: "50px"
+    fontSize: '150px',
+    color: '#fff',
+    textShadow: '5px 5px 1px black',
+    position: 'absolute',
+    bottom: '100px',
+    right: '50px'
   }
-}));
+}))
 
 export default () => {
-  const classes = useStyles();
+  const classes = useStyles()
   return (
     <>
       <svg
@@ -52,5 +52,5 @@ export default () => {
       <h1 className={classes.descTwo}>PEOPLE HAPPY</h1>
       <Typography component="div"></Typography>
     </>
-  );
-};
+  )
+}

@@ -15,6 +15,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main,
     minHeight: '100vh'
   },
+  svg: {
+    width: '100%',
+    height: '446px'
+  },
   container: {
     width: '100%'
   },

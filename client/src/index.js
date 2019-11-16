@@ -8,10 +8,12 @@ import { lightGreen, red } from '@material-ui/core/colors'
 const theme = createMuiTheme({
   palette: {
     primary: {
-      main: red[600]
+      main: red[600],
+      dark: red[300]
     },
     secondary: {
-      main: lightGreen[500]
+      main: lightGreen[500],
+      dark: lightGreen[700]
     }
   }
 })
