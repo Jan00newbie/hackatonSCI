@@ -16,8 +16,6 @@ const theme = createMuiTheme({
   }
 })
 
-console.log(lightGreen)
-
 render(
   <MuiThemeProvider theme={theme}>
     <App />

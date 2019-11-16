@@ -6,77 +6,82 @@ const {
 const auth = require('../middleware/auth')
 const validate = require('../middleware/validate')
 
-const Contact = require('../Models/Contact')
+const Event = require('../Models/Event')
 const User = require('../Models/User')
 
 const router = express.Router()
 
-const sanitizeContact = ({name, _id:id, email, phone}) => ({name, id, email, phone})
+const sanitizeEvent = ({name, _id:id, email, phone}) => ({name, id, email, phone})
 
 /**
- * @route GET /api/contacts
- * @desc Get all contacts
- * @returns All users's contacts
+ * @route GET /api/events
+ * @desc Get all events
+ * @returns All events
  * @access private
  */
-router.get('/', auth, async (req, res) => {
-    const userId = req.userId
-
-    const contacts = await Contact.find({
-        user: userId
-    })
-
-    if (!contacts) {
-        res.status(404).send({
-            warnings: ["No data found."]
-        })
-    }
-    const contactResult = contacts.map(sanitizeContact)
+router.get('/', async (req, res) => {
     
-    res.status(200).send(contactResult)
-})
-
-
-/**
- * @route GET /api/contacts
- * @desc Get contact
- * @returns Users contact with given id
- * @access private
- */
-router.get('/:id', auth, async (req, res) => {
-    const userId = req.userId
-
     try {
-
-        const contact = await Contact.findOne({ user: userId, _id: req.params.id})
+        const events = await Event.find()
         
-        if (!contact) {
+        if (!events) {
             return res.status(404).send({
                 warnings: ["No data found."]
             })
         }
 
-        const contactResult = sanitizeContact(contact)
+        const eventResult = events.map(sanitizeEvent)
+    
+        res.status(200).send(eventResult)
+    } catch (err) {
+        console.log(err);
+        
+        return res.status(404).send({
+            warnings: ["Data unreachable."]
+        })
+    }
+})
 
-        return res.status(200).send(contactResult)
+
+/**
+ * @route GET /api/events
+ * @desc Get event
+ * @returns Users event with given id
+ * @access private
+ */
+router.get('/:id', async (req, res) => {
+    
+    try {
+
+        const event = await event.findOne({ _id: req.params.id})
+        
+        if (!event) {
+            return res.status(404).send({
+                warnings: ["No data found."]
+            })
+        }
+
+        const eventResult = sanitizeEvent(event)
+
+        return res.status(200).send(eventResult)
 
     } catch (error) {
         return res.status(404).send({
-            warnings: ["No data found."]
+            warnings: ["Data unreachable."]
         })
     }
 })
 
 /**
- * @route POST /api/contacts
- * @desc Add contact
+ * @route POST /api/events
+ * @desc Add event
  * @access private
  */
 router.post('/', [
     auth,
-    check('name', 'Please privide name of contact.').not().isEmpty(),
-    check('email', 'Please privide valid email.').isEmail().optional(),
-    check('phone', 'Please privide valid phone.').isMobilePhone().optional(),
+    check('name', 'Please privide name of event.').not().isEmpty(),
+    check('location', 'Please privide valid phone.').isMobilePhone().optional(),
+    check('date', 'Please privide valid phone.').isMobilePhone().optional(),
     validate
 ], async (req, res) => {
 
@@ -91,7 +96,7 @@ router.post('/', [
 
     const { name, email, phone } = req.body
 
-    const contact = new Contact({
+    const event = new event({
         user: userId,
         name,
         email,
@@ -99,10 +104,10 @@ router.post('/', [
     })
 
     try {
-        const contactDocument = await contact.save()
-        const resultContact = sanitizeContact(contactDocument)
+        const eventDocument = await event.save()
+        const resultevent = sanitizeEvent(eventDocument)
  
-        res.status(200).send(resultContact)
+        res.status(200).send(resultevent)
     } catch (err) {
         res.status(404).send({
             warnings: ['Write error.']
@@ -111,13 +116,13 @@ router.post('/', [
 })
 
 /**
- * @route PUT /api/contacts
- * @desc Update contact
+ * @route PUT /api/events
+ * @desc Update event
  * @access private
  */
 router.put('/:id', [
     auth,
-    check('name', 'Please privide name of contact.').optional(),
+    check('name', 'Please privide name of event.').optional(),
     check('email', 'Please privide valid email.').isEmail().optional(),
     check('phone', 'Please privide valid phone.').isMobilePhone().optional(),
     validate
@@ -130,7 +135,7 @@ router.put('/:id', [
     }
 
     try {
-        const updatedContact = await Contact.findOneAndUpdate({
+        const updatedevent = await event.findOneAndUpdate({
             _id: req.params.id,
             user: req.userId
         }, update, {
@@ -138,32 +143,32 @@ router.put('/:id', [
             upsert: true
         })
 
-        const contactResult = sanitizeContact(updatedContact)
+        const eventResult = sanitizeevent(updatedevent)
 
-        return res.status(200).send(contactResult)
+        return res.status(200).send(eventResult)
 
     } catch {
         return res.status(404).send({
-            errors: ["Contact not found"]
+            errors: ["event not found"]
         })
     }
 })
 
 /**
- * @route DELETE /api/contacts
- * @desc Update contact
+ * @route DELETE /api/events
+ * @desc Update event
  * @access private
  */
 router.delete('/:id', auth, async (req, res) => {
 
-    const result = await Contact.findOneAndRemove({
+    const result = await event.findOneAndRemove({
         _id: req.params.id,
         user: req.userId
     })
 
     if (!result) {
         res.status(404).send({
-            errors: ["Contact not found."]
+            errors: ["event not found."]
         })
     }
 

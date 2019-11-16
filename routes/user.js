@@ -48,14 +48,17 @@ router.get('/', auth, async (req, res) => {
  */
 router.post('/',
     [
-        check('name', 'Name is required').not().isEmpty(),
+        check('firstName', 'Firstname is required').not().isEmpty(),
+        check('lastName', 'Lastname is required').not().isEmpty(),
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
+        check('age', 'Please provide age').not().isEmpty().isInt(),
+        check('city', 'Please provide city').not().isEmpty(),
         validate
     ],
     async (req, res) => {
 
-        const { email, name, password } = req.body
+        const { email, password, firstName, lastName, age, city } = req.body
 
         try {
             const foundUser = await User.findOne({ email })
@@ -72,7 +75,11 @@ router.post('/',
             const user = new User({
                 name,
                 password: hash,
-                email
+                email,
+                firstName,
+                lastName,
+                age,
+                city
             })
 
             const savedUser = await user.save()
