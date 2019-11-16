@@ -1,24 +1,32 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Modal, Toolbar, CssBaseline, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBarComponent from "./AppBar";
-import Home from "./Home";
+import React, { useState } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Modal, Toolbar, CssBaseline, Typography, Grid } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import AppBarComponent from "./AppBar"
+import Home from "./Home"
 import FormComponent from "./Form"
+import About from "./About"
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
-    height: "100vh"
+    minHeight: "100vh"
   },
   container: {
     width: "100%"
   },
+  modalContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
   modal: {
     maxWidth: '500px',
     maxHeight: '600px',
-    backgroundColor: 'white'
+    backgroundColor: 'white',
+    padding: theme.spacing(3)
   }
 }))
 
@@ -40,7 +48,6 @@ export default () => {
       <AppBarComponent handleOpen={handleOpen} />
       <div className={classes.root}>
         <Toolbar />
-<<<<<<< HEAD
         <Grid className={classes.container} container justify="center">
           <Grid item xs={12} md={8}>
             <Switch>
@@ -54,26 +61,14 @@ export default () => {
             </Switch>
           </Grid>
         </Grid>
-=======
-        <div className={classes.container}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/events" render={() => <h1>Home</h1>} />
-            <Route path="/login" render={() => <h1>Home</h1>} />
-            <Route path="/register" render={() => <h1>Home</h1>} />
-            <Route path="/event/:id" render={() => <h1>Home</h1>} />
-            <Route path="/about" render={() => <h1>Home</h1>} />
-            <Route render={() => <h1>Page not found</h1>} />
-          </Switch>
-        </div>
->>>>>>> 2f6ccb8bb0b9c0a8d8840ccf68ddcc34a2f298e5
       </div>
       <Modal
         open={open}
         onClose={handleClose}
+        className={classes.modalContainer}
       >
         <div className={classes.modal}>
-          <Typography variant="h5" component="h3">Text in a modal</Typography>
+          <Typography variant="h5" component="h3" align="center">Rejestracja</Typography>
           <FormComponent />
         </div>
       </Modal>
