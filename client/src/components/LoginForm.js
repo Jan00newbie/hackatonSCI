@@ -64,7 +64,7 @@ export default ({modalSwap}) => {
         <Button onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
       <div className={classes.buttonContainer}>
-        <Button size="small" onClick={modalSwap}>
+        <Button type="button" size="small" onClick={modalSwap}>
           I don't have an account
         </Button>
       </div>
