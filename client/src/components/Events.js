@@ -9,7 +9,7 @@ import {
   TextField
 } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
-import KeyboardDatePicker from '@material-ui/pickers'
+
 import api_events from '../api/events.js'
 import jotpeg from '../img/pety1.jpg'
 
@@ -22,7 +22,7 @@ const useStyles = makeStyles(theme => ({
     zIndex: 2
   },
   header: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(2, 0),
     backgroundColor: theme.palette.secondary.light
   },
   eventsContainer: {
@@ -65,12 +65,16 @@ export default () => {
   const classes = useStyles()
   const [events, setEvents] = useState([])
   const [search, setSearch] = useState({
+    name: '',
     city: '',
-    date: new Date(),
+    date: new Date().toISOString().substr(0, 10),
     slots: 0
   })
 
-  const handleDateChange = () => {}
+  const updateFilters = evt => {
+    setSearch({ ...search, [evt.target.name]: evt.target.value })
+    evt.preventDefault()
+  }
 
   useEffect(() => {
     setEvents(api_events)
@@ -80,29 +84,42 @@ export default () => {
     <Grid className={classes.container} container spacing={3} justify="center">
       <Grid item xs={12} md={5}>
         <Paper className={classes.header}>
-          <Typography variant="h5" component="h3" align="center">
-            Avaiable Events: {events.length}
+          <Typography variant="h4" component="h2" align="center">
+            Availalble Events: {events.length}
           </Typography>
         </Paper>
         <Grid className={classes.eventsContainer} container spacing={3}>
-          {events.map((event, idx) => (
-            <Grid key={idx} xs={12} md={6} item className={classes.event}>
-              <Card className={classes.card}>
-                <div className={classes.details}>
-                  <CardContent className={classes.content}>
-                    <Typography component="h5" variant="h5">
-                      {event.location}
-                    </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
-                      {event.date}
-                    </Typography>
-                  </CardContent>
-                  <div className={classes.controls}></div>
-                </div>
-                <CardMedia className={classes.cover} image={jotpeg} />
-              </Card>
-            </Grid>
-          ))}
+          {events.map((event, idx) => {
+            if (
+              (search.name != '' &&
+                new RegExp(search.name).exec(event.name) == null) ||
+              (search.city != '' &&
+                new RegExp(search.city).exec(event.name) == null) ||
+              (search.date != '' &&
+                new Date(event.date) <= new Date(search.city)) ||
+              (search.slots != 0 && event.slots >= search.slots)
+            )
+              return null
+            else 
+              return (
+                <Grid key={idx} xs={12} md={6} item className={classes.event}>
+                  <Card className={classes.card}>
+                    <div className={classes.details}>
+                      <CardContent className={classes.content}>
+                        <Typography component="h5" variant="h5">
+                          {event.location}
+                        </Typography>
+                        <Typography variant="subtitle1" color="textSecondary">
+                          {event.date}
+                        </Typography>
+                      </CardContent>
+                      <div className={classes.controls}></div>
+                    </div>
+                    <CardMedia className={classes.cover} image={jotpeg} />
+                  </Card>
+                </Grid>
+              )
+          })}
         </Grid>
       </Grid>
       <Grid item xs={12} md={3}>
@@ -110,25 +127,45 @@ export default () => {
           <Typography variant="h6" component="h4" align="center">
             Search Engine
           </Typography>
-          <TextField
-            label="City"
-            type="search"
-            className={classes.textField}
-            name="city"
-            value={search.city}
-          />
-
-          <TextField
-            label="Number"
-            type="number"
-            className={classes.textField}
-            name="slots"
-            InputLabelProps={{
-              shrink: true
-            }}
-            margin="normal"
-            variant="filled"
-          />
+          <form>
+            <TextField
+              label="Name"
+              className={classes.textField}
+              name="name"
+              value={search.name}
+              onChange={updateFilters}
+              autoComplete="off"
+              margin="normal"
+            />
+            <TextField
+              label="City"
+              type="search"
+              className={classes.textField}
+              name="city"
+              value={search.city}
+              onChange={updateFilters}
+              autoComplete="off"
+              margin="normal"
+            />
+            <TextField
+              label="Date"
+              type="date"
+              name="date"
+              defaultValue={search.date}
+              className={classes.textField}
+              onChange={updateFilters}
+              margin="normal"
+            />
+            <TextField
+              label="Slots"
+              type="number"
+              className={classes.textField}
+              onChange={updateFilters}
+              autoComplete="off"
+              name="slots"
+              margin="normal"
+            />
+          </form>
         </Paper>
       </Grid>
     </Grid>

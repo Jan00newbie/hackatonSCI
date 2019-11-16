@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { TextField, Button } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
+import React, { useState } from 'react'
+import { TextField, Button } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -8,40 +8,40 @@ const useStyles = makeStyles(theme => ({
     marginRight: theme.spacing(1),
     width: 400
   },
-    buttonContainer: {
+  buttonContainer: {
     textAlign: 'center',
     marginTop: theme.spacing(1.5)
-    }
-}));
+  }
+}))
 
-export default ({modalSwap}) => {
-  const classes = useStyles();
+export default ({ modalSwap }) => {
+  const classes = useStyles()
   const [form, setForm] = useState({
-    email: "",
-    password: ""
-  });
+    email: '',
+    password: ''
+  })
 
   const handleChange = evt => {
-    setForm({ ...form, [evt.target.name]: evt.target.value });
-    evt.preventDefault();
-  };
+    setForm({ ...form, [evt.target.name]: evt.target.value })
+    evt.preventDefault()
+  }
 
   const handleSubmit = async evt => {
-    evt.preventDefault();
+    evt.preventDefault()
     try {
-      const response = await fetch("/api/user", {
-        method: "POST",
+      const response = await fetch('/api/user', {
+        method: 'POST',
         headers: {
-          "Content-Type": "application/json"
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(form)
-      });
-      const data = response.json;
-      console.log(data);
+      })
+      const data = response.json
+      console.log(data)
     } catch (err) {
-      console.error(err);
+      console.error(err)
     }
-  };
+  }
 
   return (
     <form onSubmit={handleSubmit}>
@@ -71,8 +71,10 @@ export default ({modalSwap}) => {
         <Button variant="contained">Submit</Button>
       </div>
       <div className={classes.buttonContainer}>
-        <Button size="small" onClick={modalSwap}>I don't have an account</Button>
+        <Button size="small" onClick={modalSwap}>
+          I don't have an account
+        </Button>
       </div>
     </form>
-  );
-};
+  )
+}
