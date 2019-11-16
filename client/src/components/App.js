@@ -1,26 +1,33 @@
-import React, { useState } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { Modal, Toolbar, CssBaseline, Typography, Grid } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
-import AppBarComponent from "./AppBar"
-import Home from "./Home"
-import FormComponent from "./Form"
-import About from "./About"
+import React, { useState } from 'react'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { Modal, Toolbar, CssBaseline, Typography } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import AppBarComponent from './AppBar'
+import Home from './Home'
+import Events from './Events'
+import About from './About'
+import LoginComponent from './LoginForm'
+import RegisterComponent from './RegisterForm'
+import AuthForm from './AuthForm'
 
 const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
-    minHeight: "100vh"
+    minHeight: '100vh'
+  },
+  svg: {
+    width: '100%',
+    height: '446px'
   },
   container: {
-    width: "100%"
+    width: '100%'
   },
   modalContainer: {
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-    flexDirection: 'column',
+    flexDirection: 'column'
   },
   modal: {
     maxWidth: '500px',
@@ -31,45 +38,71 @@ const useStyles = makeStyles(theme => ({
 }))
 
 export default () => {
-  const [open, setOpen] = useState(false);
-  const classes = useStyles();
+  const classes = useStyles()
+  const [modal, setModal] = useState(false)
 
-  const handleOpen = () => {
-    setOpen(true);
-  };
-  
-  const handleClose = () => {
-    setOpen(false);
-  };
+  const loginModalOpen = () => {
+    setModal('login')
+  }
+
+  const registerModalOpen = () => {
+    setModal('register')
+  }
+
+  const modalClose = () => {
+    setModal(false)
+  }
+
+  const modalSwap = () => {
+    if (modal === 'register') {
+      modalClose()
+      loginModalOpen()
+    } else if (modal === 'login') {
+      modalClose()
+      registerModalOpen()
+    }
+  }
 
   return (
     <Router>
       <CssBaseline />
-      <AppBarComponent handleOpen={handleOpen} />
+      <AppBarComponent
+        modalControls={{
+          openLogin: loginModalOpen,
+          openRegister: registerModalOpen
+        }}
+      />
       <div className={classes.root}>
         <Toolbar />
-        <div className={classes.container}>
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/events" render={() => <h1>Home</h1>} />
-            <Route path="/login" render={() => <h1>Home</h1>} />
-            <Route path="/register" render={() => <h1>Home</h1>} />
-            <Route path="/event/:id" render={() => <h1>Home</h1>} />
-            <Route path="/about" component={About} />
-            <Route render={() => <h1>Page not found</h1>} />
-          </Switch>
-        </div>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/events" component={Events} />
+          <Route path="/login" render={() => <h1>Home</h1>} />
+          <Route path="/register" render={() => <h1>Home</h1>} />
+          <Route path="/event/:id" render={() => <h1>Home</h1>} />
+          <Route path="/about" component={About} />
+          <Route render={() => <h1>Page not found</h1>} />
+        </Switch>
       </div>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        className={classes.modalContainer}
-      >
-        <div className={classes.modal}>
-          <Typography variant="h5" component="h3" align="center">Rejestracja</Typography>
-          <FormComponent />
-        </div>
-      </Modal>
+      
+      <AuthForm 
+        onClose={modalClose}
+        classes={classes}
+        type='login'
+        modal={modal}
+        text='Log In'>
+        <LoginComponent modalSwap={modalSwap} />
+      </AuthForm>
+
+      <AuthForm 
+        onClose={modalClose}
+        classes={classes}
+        type='register'
+        modal={modal}
+        text='Register'>
+        <RegisterComponent modalSwap={modalSwap} />
+      </AuthForm>
+      
     </Router>
-  );
-};
+  )
+}

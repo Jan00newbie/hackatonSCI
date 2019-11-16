@@ -18,8 +18,8 @@ const event = mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
     }],
-    time:{
-        type: Date,
+    date:{
+        type: Number,
         required:true
     },
     timeStamp:{

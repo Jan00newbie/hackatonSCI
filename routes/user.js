@@ -73,7 +73,6 @@ router.post('/',
             const hash = await bcrypt.hash(password, salt)
 
             const user = new User({
-                name,
                 password: hash,
                 email,
                 firstName,
