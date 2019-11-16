@@ -3,7 +3,7 @@ const app = express();
 const connectDB = require('./config/db')
 
 //import routs
-const contactsRoute = require('./routes/contacts')
+const eventsRoute = require('./routes/events')
 const authRoute = require('./routes/auth')
 const userRoute = require('./routes/user')
 
@@ -16,7 +16,7 @@ connectDB()
 //routes
 app.use('/api/user', userRoute)
 app.use('/api/auth', authRoute)
-app.use('/api/contacts', contactsRoute)
+app.use('/api/events', eventsRoute)
 
 const PORT = process.env.PORT || 5000
 
