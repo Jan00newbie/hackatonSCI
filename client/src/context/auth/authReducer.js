@@ -1,6 +1,6 @@
 import {
     AUTH_SUCCESS,
-    LOAD_USER_SUCCESS,
+    LOAD_USER,
     LOGOUT
 } from '../types';
 
@@ -14,7 +14,7 @@ export default (state, change) => {
                 isAuthenticated: true
             }
 
-        case LOAD_USER_SUCCESS:
+        case LOAD_USER:
             return {
                 ...state,
                 user:change.payload

@@ -8,7 +8,7 @@ import authReducer from './authReducer';
 
 import {
     AUTH_SUCCESS,
-    LOAD_USER_SUCCESS,
+    LOAD_USER,
     LOGOUT
 } from '../types'
 
@@ -59,7 +59,7 @@ const AuthState = props => {
 
         request('/user', header)
         .then(data => {
-            dispath({type: LOAD_USER_SUCCESS, payload:data})
+            dispath({type: LOAD_USER, payload:data})
         })
         .catch(handleRequestError);
     }
