@@ -1,11 +1,17 @@
-import React, { useState } from "react"
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
-import { Modal, Toolbar, CssBaseline, Typography, Grid } from "@material-ui/core"
-import { makeStyles } from "@material-ui/core/styles"
-import AppBarComponent from "./AppBar"
-import Home from "./Home"
-import FormComponent from "./Form"
-import About from "./About"
+import React, { useState } from "react";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import {
+  Modal,
+  Toolbar,
+  CssBaseline,
+  Typography
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBarComponent from "./AppBar";
+import Home from "./Home";
+import LoginComponent from "./LoginForm";
+import RegisterComponent from "./RegisterForm";
+import About from "./About";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -17,59 +23,88 @@ const useStyles = makeStyles(theme => ({
     width: "100%"
   },
   modalContainer: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexDirection: 'column',
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    flexDirection: "column"
   },
   modal: {
-    maxWidth: '500px',
-    maxHeight: '600px',
-    backgroundColor: 'white',
+    maxWidth: "500px",
+    maxHeight: "600px",
+    backgroundColor: "white",
     padding: theme.spacing(3)
   }
-}))
+}));
 
 export default () => {
-  const [open, setOpen] = useState(false);
   const classes = useStyles();
-
-  const handleOpen = () => {
-    setOpen(true);
-  };
+  const [modal, setModal] = useState(false);
   
-  const handleClose = () => {
-    setOpen(false);
+  const loginModalOpen = () => {
+    setModal('login');
+    console.log(modal)
   };
+
+  const registerModalOpen = () => {
+    setModal('register');
+  };
+
+  const modalClose = () => {
+    setModal(false);
+  };
+
+  const modalSwap = () => {
+    if (modal === 'register') {
+      modalClose()
+      loginModalOpen()
+    } else if (modal === 'login') {
+      modalClose()
+      registerModalOpen()
+    }
+      
+  }
+
+
+  
 
   return (
     <Router>
       <CssBaseline />
-      <AppBarComponent handleOpen={handleOpen} />
+      <AppBarComponent modalControls={{openLogin: loginModalOpen, openRegister: registerModalOpen}} />
       <div className={classes.root}>
         <Toolbar />
-        <Grid className={classes.container} container justify="center">
-          <Grid item xs={12} md={8}>
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/events" render={() => <h1>Home</h1>} />
-              <Route path="/login" render={() => <h1>Home</h1>} />
-              <Route path="/register" render={() => <h1>Home</h1>} />
-              <Route path="/event/:id" render={() => <h1>Home</h1>} />
-              <Route path="/about" component={About} />
-              <Route render={() => <h1>Page not found</h1>} />
-            </Switch>
-          </Grid>
-        </Grid>
+        <Switch>
+          <Route exact path="/" component={Home} />
+          <Route path="/events" render={() => <h1>Home</h1>} />
+          <Route path="/login" render={() => <h1>Home</h1>} />
+          <Route path="/register" render={() => <h1>Home</h1>} />
+          <Route path="/event/:id" render={() => <h1>Home</h1>} />
+          <Route path="/about" component={About} />
+          <Route render={() => <h1>Page not found</h1>} />
+        </Switch>
       </div>
       <Modal
-        open={open}
-        onClose={handleClose}
+        open={modal === 'login'}
+        onClose={modalClose}
         className={classes.modalContainer}
       >
         <div className={classes.modal}>
-          <Typography variant="h5" component="h3" align="center">Rejestracja</Typography>
-          <FormComponent />
+          <Typography variant="h5" component="h3" align="center">
+            Log In
+          </Typography>
+          <LoginComponent modalSwap={modalSwap} />
+        </div>
+      </Modal>
+      <Modal
+        open={modal === 'register'}
+        onClose={modalClose}
+        className={classes.modalContainer}
+      >
+        <div className={classes.modal}>
+          <Typography variant="h5" component="h3" align="center">
+            Register
+          </Typography>
+          <RegisterComponent modalSwap={modalSwap} />
         </div>
       </Modal>
     </Router>

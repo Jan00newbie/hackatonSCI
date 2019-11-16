@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Typography, TextField, Button, Radio } from "@material-ui/core";
+import { TextField, Button, Radio } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
@@ -7,10 +7,19 @@ const useStyles = makeStyles(theme => ({
     marginLeft: theme.spacing(1),
     marginRight: theme.spacing(1),
     width: 200
+  },
+  radioContainer: {
+    display: 'flex',
+    justifyContent: 'space-evenly',
+    margin: theme.spacing(1.5, 0)
+  },
+  buttonContainer: {
+    textAlign: 'center',
+    marginTop: theme.spacing(1.5)
   }
 }));
 
-export default () => {
+export default ({modalSwap}) => {
   const classes = useStyles();
   const [form, setForm] = useState({
     firstName: "",
@@ -24,6 +33,7 @@ export default () => {
   });
 
   const handleChange = evt => {
+      console.log(evt.target.value)
     setForm({ ...form, [evt.target.name]: evt.target.value });
     evt.preventDefault();
   };
@@ -53,6 +63,7 @@ export default () => {
           className={classes.textField}
           value={form.firstName}
           onChange={handleChange}
+          name="firstName"
           margin="normal"
         />
         <TextField
@@ -60,6 +71,7 @@ export default () => {
           className={classes.textField}
           value={form.lastName}
           onChange={handleChange}
+          name="lastName"
           margin="normal"
         />
       </div>
@@ -69,6 +81,8 @@ export default () => {
           className={classes.textField}
           value={form.password}
           onChange={handleChange}
+          name="password"
+          type="password"
           margin="normal"
         />
         <TextField
@@ -76,6 +90,8 @@ export default () => {
           className={classes.textField}
           value={form.repassword}
           onChange={handleChange}
+          name="repassword"
+          type="password"
           margin="normal"
         />
       </div>
@@ -85,6 +101,7 @@ export default () => {
           className={classes.textField}
           value={form.city}
           onChange={handleChange}
+          name="city"
           margin="normal"
         />
         <TextField
@@ -92,10 +109,12 @@ export default () => {
           className={classes.textField}
           value={form.email}
           onChange={handleChange}
+          name="email"
+          type="email"
           margin="normal"
         />
       </div>
-      <div>
+      <div className={classes.radioContainer}>
         <label>
           Male
           <Radio
@@ -115,7 +134,12 @@ export default () => {
           />
         </label>
       </div>
-      <Button variant="contained">Submit</Button>
+      <div className={classes.buttonContainer}>
+        <Button variant="contained">Submit</Button>
+      </div>
+      <div className={classes.buttonContainer}>
+        <Button size="small" onClick={modalSwap} >I have an account</Button>
+      </div>
     </form>
   );
 };
