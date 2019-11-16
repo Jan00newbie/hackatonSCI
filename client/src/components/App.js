@@ -8,6 +8,7 @@ import Events from './Events'
 import About from './About'
 import LoginComponent from './LoginForm'
 import RegisterComponent from './RegisterForm'
+import AuthForm from './AuthForm'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -83,30 +84,25 @@ export default () => {
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
       </div>
-      <Modal
-        open={modal === 'login'}
+      
+      <AuthForm 
         onClose={modalClose}
-        className={classes.modalContainer}
-      >
-        <div className={classes.modal}>
-          <Typography variant="h5" component="h3" align="center">
-            Log In
-          </Typography>
-          <LoginComponent modalSwap={modalSwap} />
-        </div>
-      </Modal>
-      <Modal
-        open={modal === 'register'}
+        classes={classes}
+        type='login'
+        modal={modal}
+        text='Log In'>
+        <LoginComponent modalSwap={modalSwap} />
+      </AuthForm>
+
+      <AuthForm 
         onClose={modalClose}
-        className={classes.modalContainer}
-      >
-        <div className={classes.modal}>
-          <Typography variant="h5" component="h3" align="center">
-            Register
-          </Typography>
-          <RegisterComponent modalSwap={modalSwap} />
-        </div>
-      </Modal>
+        classes={classes}
+        type='register'
+        modal={modal}
+        text='Register'>
+        <RegisterComponent modalSwap={modalSwap} />
+      </AuthForm>
+      
     </Router>
   )
 }

@@ -21,6 +21,7 @@ const user = mongoose.Schema({
         type: String,
         required: true
     },
+    maxParticipans:Number,
     date:{
         type:Date,
         default:Date.now()
