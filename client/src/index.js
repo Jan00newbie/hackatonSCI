@@ -5,13 +5,17 @@ import App from './components/App'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import { lightGreen, red } from '@material-ui/core/colors'
 
+import AuthProvider from './context/auth/AuthState'
+import AlertProvider from './context/alert/AlertState'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
       main: red[600],
-      dark: red[300]
+      dark: red[800]
     },
     secondary: {
+      light: lightGreen[300],
       main: lightGreen[500],
       dark: lightGreen[700]
     }
@@ -19,8 +23,13 @@ const theme = createMuiTheme({
 })
 
 render(
-  <MuiThemeProvider theme={theme}>
-    <App />
-  </MuiThemeProvider>,
+
+  <AlertProvider>
+    <AuthProvider>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+    </AuthProvider>
+  </AlertProvider>,
   document.getElementById('root')
 )

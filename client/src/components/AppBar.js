@@ -18,8 +18,8 @@ const useStyles = makeStyles(theme => ({
   },
   navbar: {
     display: 'flex',
-    'flex-grow': 1,
-    'justify-content': 'flex-end'
+    flexGrow: 1,
+    justifyContent: 'flex-end'
   },
   logo: {
     height: '48px'

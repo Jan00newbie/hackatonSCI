@@ -1,4 +1,5 @@
 const express = require('express')
+const cors = require('cors')
 const app = express();
 const connectDB = require('./config/db')
 
@@ -9,6 +10,7 @@ const userRoute = require('./routes/user')
 
 //setup middleware functions
 app.use(express.json({extended: false}))
+app.use(cors())
 
 //connect to database
 connectDB()
