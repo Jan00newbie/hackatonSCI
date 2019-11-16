@@ -5,6 +5,9 @@ import App from './components/App'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import { lightGreen, red } from '@material-ui/core/colors'
 
+import AuthProvider from './context/auth/AuthState'
+import AlertProvider from './context/alert/AlertState'
+
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -19,8 +22,13 @@ const theme = createMuiTheme({
 })
 
 render(
-  <MuiThemeProvider theme={theme}>
-    <App />
-  </MuiThemeProvider>,
+
+  <AlertProvider>
+    <AuthProvider>
+      <MuiThemeProvider theme={theme}>
+        <App />
+      </MuiThemeProvider>
+    </AuthProvider>
+  </AlertProvider>,
   document.getElementById('root')
 )

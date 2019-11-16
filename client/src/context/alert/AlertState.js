@@ -17,6 +17,8 @@ const AlertState = props => {
     const [state, dispath] = useReducer(alertReducer, initialState);
     
     const setAlertHandler = (messages, type = NOTICE) => {
+        console.log(messages, type);
+        
         const id = Math.floor(Math.random() * 1000)
         
         const alert = {

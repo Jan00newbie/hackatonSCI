@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button, Radio } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import authContext from '../context/auth/authContext'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -21,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 export default ({modalSwap}) => {
   const classes = useStyles();
+  const {auth} = useContext(authContext)
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -40,19 +43,7 @@ export default ({modalSwap}) => {
 
   const handleSubmit = async evt => {
     evt.preventDefault();
-    try {
-      const response = await fetch("/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
-      const data = response.json;
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
+    auth(form);
   };
 
   return (

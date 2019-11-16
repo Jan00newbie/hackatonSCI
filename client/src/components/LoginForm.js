@@ -1,6 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+
+import authContext from '../context/auth/authContext'
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -15,6 +17,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export default ({modalSwap}) => {
+  const {auth} = useContext(authContext)
   const classes = useStyles();
   const [form, setForm] = useState({
     email: "",
@@ -22,29 +25,19 @@ export default ({modalSwap}) => {
   });
 
   const handleChange = evt => {
-    setForm({ ...form, [evt.target.name]: evt.target.value });
     evt.preventDefault();
+    
+    setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
-  const handleSubmit = async evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    try {
-      const response = await fetch("/api/user", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(form)
-      });
-      const data = response.json;
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
+    
+    auth(form);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div>
         <TextField
           label="E-mail"
@@ -68,7 +61,7 @@ export default ({modalSwap}) => {
         />
       </div>
       <div className={classes.buttonContainer}>
-        <Button variant="contained">Submit</Button>
+        <Button onClick={handleSubmit} variant="contained">Submit</Button>
       </div>
       <div className={classes.buttonContainer}>
         <Button size="small" onClick={modalSwap}>I don't have an account</Button>
