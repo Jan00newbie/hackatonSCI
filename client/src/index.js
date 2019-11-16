@@ -1,6 +1,6 @@
 import React from 'react'
 import { render } from 'react-dom'
-
+import './style.css';
 import App from './components/App'
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core'
 import { lightGreen, red } from '@material-ui/core/colors'

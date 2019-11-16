@@ -6,17 +6,19 @@ const style = {
     display:'flex',
     flexDirection: 'column',
     zIndex: '1000',
-    position:'relative'
+    position:'relative',
+    top: 80,
+    left: 10
 }
 
 export const AlertsList = () => {
     const {alerts} = useContext(alertContext)
-    console.log(alerts);
+    
+    console.log(!!alerts, alerts);
     
     return (
         <div style={style}>
-            {alerts.map(({id, ...data}) => 
-                <Alert key={id} {...data}/>)}
+            {!!alerts ?<Alert {...alerts}/> :''} 
         </div>
     )
 }

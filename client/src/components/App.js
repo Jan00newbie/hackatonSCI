@@ -99,8 +99,8 @@ export default () => {
             fill="#8BC34C"
           />
         </svg>
-        <Toolbar />
         <AlertsList />
+        <Toolbar />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />

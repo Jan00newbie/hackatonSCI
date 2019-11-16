@@ -12,7 +12,7 @@ import { ERROR, WARNING, NOTICE } from './alertTypes';
 
 const AlertState = props => {
 
-    const initialState = [];
+    const initialState = null;
 
     const [state, dispath] = useReducer(alertReducer, initialState);
     
@@ -30,7 +30,7 @@ const AlertState = props => {
         dispath({type: SET_ALERT, payload: alert});
 
         setTimeout(() => {
-            dispath({type: REMOVE_ALERT, payload: id});
+            dispath({type: REMOVE_ALERT});
         }, 5000);
     }
     
