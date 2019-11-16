@@ -14,7 +14,9 @@ const useStyles = makeStyles(theme => ({
   container: {
     width: '100%',
     minHeight: 'calc(100vh - 64px)',
-    margin: 0
+    margin: 0,
+    position: "relative",
+    zIndex: 2
   },
   header: {
     padding: theme.spacing(2),
