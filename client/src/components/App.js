@@ -94,6 +94,7 @@ export default () => {
           <Route path="/register" render={() => <h1>Home</h1>} />
           <Route path="/event/:id" render={() => <h1>Home</h1>} />
           <Route path="/about" component={About} />
+          <Route path="/profile" component={Profile} />
           <Route render={() => <h1>Page not found</h1>} />
         </Switch>
       </div>

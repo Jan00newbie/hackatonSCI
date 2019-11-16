@@ -9,11 +9,11 @@
     color:white;
     animation: dropdown .3s;
 }
-.alert__box--ERRORS{
+.alert__box--ERROR{
     background: rgb(240, 0, 0);
     border:2px solid rgb(184, 0, 0);
 }
-.alert__box--WARNINGS{
+.alert__box--WARNING{
     background: rgb(240, 216, 0);
     border:2px solid rgb(184, 165, 0);
 }

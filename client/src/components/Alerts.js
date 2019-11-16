@@ -14,8 +14,6 @@ const style = {
 export const AlertsList = () => {
     const {alerts} = useContext(alertContext)
     
-    console.log(!!alerts, alerts);
-    
     return (
         <div style={style}>
             {!!alerts ?<Alert {...alerts}/> :''} 
