@@ -104,7 +104,6 @@ export default () => {
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />
-          <Route path="/newevent" component={NewEvent} />
           <Route path="/about" component={About} />
           {/* <Route path="/profile" component={Profile} /> */}
           <Route render={() => <h1>Page not found</h1>} />
