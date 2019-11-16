@@ -1,10 +1,12 @@
 import React, { useState } from "react"
-import { Typography } from "@material-ui/core";
+import { Typography, TextField } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-    label: {
-        display: 'block'
+    textField: {
+        marginLeft: theme.spacing(1),
+        marginRight: theme.spacing(1),
+        width: 200
     }
 }))
 
@@ -40,25 +42,17 @@ export default () => {
 
     return (
           <form onSubmit={handleSubmit}>
-            <label className={classes.label}>
-              <Typography variant="caption">First Name</Typography>
-              <input name="firstName" onChange={handleChange} value={form.firstName} />
-            </label>
-            <label className={classes.label}>
-              <Typography variant="caption">Last Name</Typography>
-              <input name="lastName" onChange={handleChange} value={form.lastName} />
-            </label>
+              <div>
+                <TextField label="First Name" className={classes.textField} value={form.firstName} onChange={handleChange} margin="normal"/>
+                <TextField label="Last Name" className={classes.textField} value={form.lastName} onChange={handleChange} margin="normal"/>
+              </div>
+              <div>
+                <TextField label="Password" className={classes.textField} value={form.password} onChange={handleChange} margin="normal"/>
+                <TextField label="Repeat Password" className={classes.textField} value={form.repassword} onChange={handleChange} margin="normal"/>
+              </div>
             <label className={classes.label}>
               <Typography variant="caption">Email</Typography>
               <input name="email" onChange={handleChange} value={form.email} />
-            </label>
-            <label className={classes.label}>
-              <Typography variant="caption">Password</Typography>
-              <input type="password" name="password" onChange={handleChange} value={form.password} />
-            </label>
-            <label className={classes.label}>
-              <Typography variant="caption">Repeat Password</Typography>
-              <input type="password" name="repassword" onChange={handleChange} value={form.repassword} />
             </label>
             <label className={classes.label}>
               <Typography variant="caption">Age</Typography>

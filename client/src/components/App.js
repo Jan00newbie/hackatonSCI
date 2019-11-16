@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   modal: {
     maxWidth: '500px',
     maxHeight: '600px',
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: 'white'
   }
 }))
 
