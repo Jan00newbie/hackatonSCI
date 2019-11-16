@@ -3,11 +3,10 @@ export default (input, init = {}) =>
         .then(res => res.json())
         .then(data => {
             if(data.errors) {
-                throw {type: "ERRORS", payload:data.errors}
+                throw {type: "ERROR", payload:data.errors}
             }
             if(data.warnings) {
-                throw {type: "WARNINGS", payload:data
-                .errors}
+                throw {type: "WARNING", payload:data.warnings}
             }
             return data
         })
