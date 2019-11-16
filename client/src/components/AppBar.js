@@ -6,9 +6,9 @@ import {
   Toolbar,
   Slide,
   Hidden,
-  Typography,
   useScrollTrigger
 } from '@material-ui/core'
+import logo from '../img/logoBig.png'
 import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     'justify-content': 'flex-end'
   },
   logo: {
-    color: 'white'
+    height: '48px'
   },
   button: {
     margin: theme.spacing(1, 2),
@@ -33,7 +33,7 @@ const Link = forwardRef((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
 ))
 
-export default function() {
+export default function({ handleOpen }) {
   const classes = useStyles()
   const trigger = useScrollTrigger()
 
@@ -41,7 +41,7 @@ export default function() {
     <Slide appear={false} direction="down" in={!trigger}>
       <AppBar className={classes.appbar}>
         <Toolbar>
-          <Typography className={classes.logo} variant="h6">Party Together</Typography>
+          <img src={logo} alt="logo" className={classes.logo} />
           <Hidden smDown>
             <div className={classes.navbar}>
               <Button
@@ -64,8 +64,8 @@ export default function() {
               </Button>
               <Button
                 size="small"
-                href="#text-buttons"
                 className={classes.button}
+                onClick={handleOpen}
               >
                 Log In / Sign In
               </Button>
