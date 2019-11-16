@@ -1,49 +1,50 @@
-import React, { forwardRef } from "react";
-import { Link as RouterLink } from "react-router-dom";
+import React, { forwardRef } from 'react'
+import { Link as RouterLink } from 'react-router-dom'
 import {
   AppBar,
   Button,
   Toolbar,
   Slide,
   Hidden,
+  Image,
   useScrollTrigger
-} from "@material-ui/core";
-import logo from "../img/logoBig.png";
-import { makeStyles } from "@material-ui/core/styles";
+} from '@material-ui/core'
+import logo from '../img/logoBig.png'
+import { makeStyles } from '@material-ui/core/styles'
 
 const useStyles = makeStyles(theme => ({
   appbar: {
     backgroundColor: theme.palette.secondary.main
   },
   navbar: {
-    display: "flex",
-    "flex-grow": 1,
-    "justify-content": "flex-end"
+    display: 'flex',
+    'flex-grow': 1,
+    'justify-content': 'flex-end'
   },
   logo: {
-    height: "48px"
+    height: '48px'
   },
   button: {
     margin: theme.spacing(1, 2),
-    color: "white"
+    color: 'white'
   }
-}));
+}))
 
 const Link = forwardRef((props, ref) => (
   <RouterLink innerRef={ref} {...props} />
-));
+))
 
-export default function({
-  modalControls: { openLogin, openRegister }
-}) {
-  const classes = useStyles();
-  const trigger = useScrollTrigger();
+export default function({ modalControls: { openLogin, openRegister } }) {
+  const classes = useStyles()
+  const trigger = useScrollTrigger()
 
   return (
     <Slide appear={false} direction="down" in={!trigger}>
       <AppBar className={classes.appbar}>
         <Toolbar>
-          <img src={logo} alt="logo" className={classes.logo} />
+          <Link to="/">
+            <img src={logo} alt="logo" className={classes.logo} />
+          </Link>
           <Hidden smDown>
             <div className={classes.navbar}>
               <Button
@@ -85,5 +86,5 @@ export default function({
         </Toolbar>
       </AppBar>
     </Slide>
-  );
+  )
 }

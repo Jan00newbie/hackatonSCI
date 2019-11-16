@@ -16,6 +16,10 @@ const useStyles = makeStyles(theme => ({
     backgroundColor: theme.palette.primary.main,
     minHeight: '100vh'
   },
+  svg: {
+    width: '100%',
+    height: '446px'
+  },
   container: {
     width: '100%'
   },
@@ -30,6 +34,12 @@ const useStyles = makeStyles(theme => ({
     maxHeight: '600px',
     backgroundColor: 'white',
     padding: theme.spacing(3)
+  },
+  svgImage:{
+    position: "absolute",
+    top: "0",
+    bottom: "0",
+    zIndex: "1"
   }
 }))
 
@@ -68,7 +78,12 @@ export default () => {
           openRegister: registerModalOpen
         }}
       />
+
       <div className={classes.root}>
+      <svg width="100%" height="446" viewBox="0 0 100% 446" fill="none" xmlns="http://www.w3.org/2000/svg" className={classes.svgImage}>
+<path d="M0 21H1948.71C1948.71 21 2309.36 343.753 1948.71 335.246C1588.07 326.74 1475.74 86.051 973.003 335.246C470.262 584.442 379.932 335.246 0 335.246V21Z" fill="white"/>
+<path d="M0 0H1948.71C1948.71 0 2309.36 322.753 1948.71 314.246C1588.07 305.74 1475.74 65.051 973.003 314.246C470.262 563.442 379.932 314.246 0 314.246V0Z" fill="#8BC34C"/>
+</svg>
         <Toolbar />
         <Switch>
           <Route exact path="/" component={Home} />
