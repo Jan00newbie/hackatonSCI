@@ -50,6 +50,25 @@ const AuthState = props => {
         .catch(handleRequestError);
     }
 
+    const registerHandler = userRegisterData => {
+        
+        const header = {
+            method:'POST',
+            body: JSON.stringify(userRegisterData)
+        }
+        
+        request('/user', header)
+        .then(data => {
+            
+            if (!data.token){
+                throw new Error('Problem with registration! Please try again')
+            }
+            
+            dispath({type: AUTH_SUCCESS, payload:data.token})
+        })
+        .catch(handleRequestError);
+    }
+
     const loadUserHandler = () => {
         const header = {
             headers:{
@@ -69,7 +88,8 @@ const AuthState = props => {
             loadUser: loadUserHandler,
             isAuthenticated: state.isAuthenticated,
             user:state.user,
-            logout: logoutHandler
+            logout: logoutHandler,
+            register: registerHandler
         }} >
             {props.children}
         </authContext.Provider>

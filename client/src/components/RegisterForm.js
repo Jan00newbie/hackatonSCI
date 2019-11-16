@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
 
 export default ({modalSwap}) => {
   const classes = useStyles();
-  const {auth} = useContext(authContext)
+  const {register} = useContext(authContext)
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -36,18 +36,18 @@ export default ({modalSwap}) => {
   });
 
   const handleChange = evt => {
+    evt.preventDefault();
       console.log(evt.target.value)
     setForm({ ...form, [evt.target.name]: evt.target.value });
-    evt.preventDefault();
   };
 
-  const handleSubmit = async evt => {
+  const handleSubmit = evt => {
     evt.preventDefault();
-    auth(form);
+    register(form);
   };
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form>
       <div>
         <TextField
           label="First Name"
@@ -126,7 +126,7 @@ export default ({modalSwap}) => {
         </label>
       </div>
       <div className={classes.buttonContainer}>
-        <Button variant="contained">Submit</Button>
+        <Button variant="contained" onClick={handleSubmit}>Submit</Button>
       </div>
       <div className={classes.buttonContainer}>
         <Button type="button" size="small" onClick={modalSwap} >I have an account</Button>
