@@ -1,9 +1,9 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
-import { Modal, Toolbar, CssBaseline, Typography } from "@material-ui/core";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBarComponent from "./AppBar";
-import Home from "./Home";
+import React, { useState } from "react"
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
+import { Modal, Toolbar, CssBaseline, Typography, Grid } from "@material-ui/core"
+import { makeStyles } from "@material-ui/core/styles"
+import AppBarComponent from "./AppBar"
+import Home from "./Home"
 import FormComponent from "./Form"
 import About from "./About"
 
@@ -11,15 +11,22 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
     backgroundColor: theme.palette.primary.main,
-    height: "100vh"
+    minHeight: "100vh"
   },
   container: {
     width: "100%"
   },
+  modalContainer: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    flexDirection: 'column',
+  },
   modal: {
     maxWidth: '500px',
     maxHeight: '600px',
-    backgroundColor: theme.palette.primary.main
+    backgroundColor: 'white',
+    padding: theme.spacing(3)
   }
 }))
 
@@ -56,9 +63,10 @@ export default () => {
       <Modal
         open={open}
         onClose={handleClose}
+        className={classes.modalContainer}
       >
         <div className={classes.modal}>
-          <Typography variant="h5" component="h3">Text in a modal</Typography>
+          <Typography variant="h5" component="h3" align="center">Rejestracja</Typography>
           <FormComponent />
         </div>
       </Modal>
