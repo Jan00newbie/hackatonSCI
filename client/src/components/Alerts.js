@@ -6,7 +6,9 @@ const style = {
     display:'flex',
     flexDirection: 'column',
     zIndex: '1000',
-    position:'relative'
+    position:'relative',
+    top: 80,
+    left: 10
 }
 
 export const AlertsList = () => {

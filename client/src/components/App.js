@@ -85,8 +85,8 @@ export default () => {
 <path d="M0 21H1948.71C1948.71 21 2309.36 343.753 1948.71 335.246C1588.07 326.74 1475.74 86.051 973.003 335.246C470.262 584.442 379.932 335.246 0 335.246V21Z" fill="white"/>
 <path d="M0 0H1948.71C1948.71 0 2309.36 322.753 1948.71 314.246C1588.07 305.74 1475.74 65.051 973.003 314.246C470.262 563.442 379.932 314.246 0 314.246V0Z" fill="#8BC34C"/>
 </svg>
+<AlertsList />
         <Toolbar />
-        <AlertsList />
         <Switch>
           <Route exact path="/" component={Home} />
           <Route path="/events" component={Events} />
