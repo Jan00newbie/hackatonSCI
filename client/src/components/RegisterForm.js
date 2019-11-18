@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { TextField, Button, Radio } from "@material-ui/core";
+import { TextField, Button} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import authContext from '../context/auth/authContext'
+import { RadioBool } from "./RadioBool";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -31,18 +32,18 @@ export default ({modalSwap}) => {
     password: "",
     repassword: "",
     age: 0,
-    gender: "false",
+    isMale: true,
     city: ""
   });
 
   const handleChange = evt => {
     evt.preventDefault();
-      console.log(evt.target.value)
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
   const handleSubmit = evt => {
     evt.preventDefault();
+    console.log(form);
     register(form);
   };
 
@@ -106,24 +107,12 @@ export default ({modalSwap}) => {
         />
       </div>
       <div className={classes.radioContainer}>
-        <label>
-          Male
-          <Radio
-            checked={form.gender === "true"}
-            onChange={handleChange}
-            value="true"
-            name="gender"
-          />
-        </label>
-        <label>
-          Female
-          <Radio
-            checked={form.gender === "false"}
-            onChange={handleChange}
-            value="false"
-            name="gender"
-          />
-        </label>
+        <RadioBool 
+          texts={['Male', 'Female']}
+          onChange={handleChange}
+          name='isMale'
+          value={form.isMale}
+        />
       </div>
       <div className={classes.buttonContainer}>
         <Button variant="contained" onClick={handleSubmit}>Submit</Button>
