@@ -17,9 +17,7 @@ const sanitizeEvent = ({
     location,
     participans,
     date,
-    timeStamp,
-    y
-    
+    timeStamp    
 }) => ({
     id,
     creator,

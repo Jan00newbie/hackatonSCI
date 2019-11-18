@@ -21,11 +21,16 @@ const user = mongoose.Schema({
         type: String,
         required: true
     },
-    maxParticipans:Number,
     date:{
         type:Date,
-        default:Date.now()
-    }
+        default:Date.now(),
+        required: true
+    },
+    isMale:{
+        type:Boolean,
+        required:true
+    },
+    birthYear:Number
 })
 
 module.exports = mongoose.model('User', user)

@@ -52,14 +52,15 @@ router.post('/',
         check('lastName', 'Lastname is required').not().isEmpty(),
         check('email', 'Please include a valid email').isEmail(),
         check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-        check('age', 'Please provide age').not().isEmpty().isInt(),
         check('city', 'Please provide city').not().isEmpty(),
+        check('isMale', 'Please provide gender').not().isEmpty().isBoolean(),
+        check('age', 'Please provide age').not().isEmpty().isNumeric(),
         validate
     ],
     async (req, res) => {
 
-        const { email, password, firstName, lastName, age, city } = req.body
-
+        const { email, password, firstName, lastName, age, city, isMale, birthYear } = req.body
+        
         try {
             const foundUser = await User.findOne({ email })
             if (foundUser) {
@@ -78,7 +79,9 @@ router.post('/',
                 firstName,
                 lastName,
                 age,
-                city
+                city,
+                isMale,
+                birthYear
             })
 
             const savedUser = await user.save()

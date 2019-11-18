@@ -14,6 +14,7 @@ const event = mongoose.Schema({
         type:String,
         required: true
     },
+    maxParticipans:Number,
     participans: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
