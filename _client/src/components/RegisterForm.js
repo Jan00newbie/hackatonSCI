@@ -1,9 +1,13 @@
 import React, { useState, useContext } from "react";
-import { TextField, Button} from "@material-ui/core";
+import { TextField, Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
+import {
+  DatePicker
+} from '@material-ui/pickers';
 
 import authContext from '../context/auth/authContext'
 import { RadioBool } from "./RadioBool";
+import { YearPicker } from "./YearPicker";
 
 const useStyles = makeStyles(theme => ({
   textField: {
@@ -31,13 +35,15 @@ export default ({modalSwap}) => {
     email: "",
     password: "",
     repassword: "",
-    age: 0,
     isMale: true,
-    city: ""
+    city: "",
+    birthYear: null
   });
 
   const handleChange = evt => {
     evt.preventDefault();
+    console.log(evt.target.name,evt.target.value );
+    
     setForm({ ...form, [evt.target.name]: evt.target.value });
   };
 
@@ -113,6 +119,11 @@ export default ({modalSwap}) => {
           name='isMale'
           value={form.isMale}
         />
+      </div>
+      <div>
+        <YearPicker 
+          name='birthYear'
+          onChange={handleChange}/>
       </div>
       <div className={classes.buttonContainer}>
         <Button variant="contained" onClick={handleSubmit}>Submit</Button>

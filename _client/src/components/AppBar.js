@@ -44,7 +44,6 @@ export default function({ modalControls: { openLogin, openRegister } }) {
           <Link to="/">
             <img src={logo} alt="logo" className={classes.logo} />
           </Link>
-          <Hidden smDown>
             <div className={classes.navbar}>
               <Button
                 size="small"
@@ -81,7 +80,6 @@ export default function({ modalControls: { openLogin, openRegister } }) {
                 Sign In
               </Button>
             </div>
-          </Hidden>
         </Toolbar>
       </AppBar>
     </Slide>

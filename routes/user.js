@@ -48,13 +48,13 @@ router.get('/', auth, async (req, res) => {
  */
 router.post('/',
     [
-        check('firstName', 'Firstname is required').not().isEmpty(),
-        check('lastName', 'Lastname is required').not().isEmpty(),
-        check('email', 'Please include a valid email').isEmail(),
-        check('password', 'Please enter a password with 6 or more characters').isLength({ min: 6 }),
-        check('city', 'Please provide city').not().isEmpty(),
-        check('isMale', 'Please provide gender').not().isEmpty().isBoolean(),
-        check('age', 'Please provide age').not().isEmpty().isNumeric(),
+        check('firstName', 'Firstname is required.').not().isEmpty(),
+        check('lastName', 'Lastname is required.').not().isEmpty(),
+        check('email', 'Please include a valid email.').isEmail(),
+        check('password', 'Please enter a password with 6 or more characters.').isLength({ min: 6 }),
+        check('city', 'Please provide city.').not().isEmpty(),
+        check('isMale', 'Please provide gender.').not().isEmpty().isBoolean(),
+        check('birthYear', 'Please provide birth year.').not().isEmpty().isNumeric(),
         validate
     ],
     async (req, res) => {

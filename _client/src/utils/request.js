@@ -2,12 +2,10 @@ export default (input, init = {}) =>
     fetch(`http://localhost:5000/api${input}`, setAdditionalHeaders(init))
         .then(res => res.json())
         .then(data => {
-            if(data.errors) {
-                throw {type: "ERROR", payload:data.errors}
-            }
-            if(data.warnings) {
-                throw {type: "WARNING", payload:data.warnings}
-            }
+            data.errors && 
+                (() => { throw {type: "ERROR", payload:data.error}})()
+            data.warnings && 
+                (() => { throw {type: "WARNING", payload:data.warnings}})()
             return data
         })
 

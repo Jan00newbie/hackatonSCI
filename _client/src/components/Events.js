@@ -12,7 +12,7 @@ import {
 import { makeStyles } from '@material-ui/core/styles'
 import EventView from './EventView'
 
-import api_events from '../api/events.js'
+import api_events from '../api/events.js.js'
 import jotpeg from '../img/pety1.jpg'
 
 const useStyles = makeStyles(theme => ({
