@@ -1,0 +1,30 @@
+@import "../../../../var.scss";
+
+:local(.container){
+    display: flex;
+    flex-direction: column;
+}
+
+:local(.label){
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+:local(.input){
+    border:none;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 2px solid;
+    margin-top:3px;
+}
+
+
+:local(.input:focus){
+    outline: none;
+}
+
+
+:local(.title){
+    color: $green;
+}

@@ -1,12 +1,13 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import {BrowserRouter as Router} from 'react-router-dom'
 
-import App from './components/App'
+import './global.scss'
 
 import AuthProvider from './context/auth/AuthState'
 import AlertProvider from './context/alert/AlertState'
 
-import {BrowserRouter as Router} from 'react-router-dom'
+import App from './components/App'
 
 ReactDOM.render(
     <AlertProvider>
