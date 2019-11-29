@@ -10,12 +10,19 @@ const Navbar = () => {
                 <Link to={{
                     pathname:`/login`,
                     state: {background:location}}}>
-                        Login
+                        zaloguj
+                </Link>
+            </div>
+            <div className='shadow nav__link'>
+                <Link to={{
+                    pathname:`/register`,
+                    state: {background:location}}}>
+                        dołącz
                 </Link>
             </div>
             <div className='shadow nav__link'>
                 <Link to="/events">
-                    Events
+                    eventy
                 </Link>
             </div>
         </nav>

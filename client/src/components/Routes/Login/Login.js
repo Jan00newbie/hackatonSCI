@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
-import style from './login.module.scss'
-import { useHistory } from "react-router-dom";
 
-console.log(style)
+import AuthFormWraper from '../../Layout/AuthFormWraper'
+
+import style from './login.module.scss'
+
 const Login = () => {
     
     const [input, setInput] = useState({
@@ -21,11 +22,13 @@ const Login = () => {
     }
 
     return (
-        <form className={style.form}>
-            Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
-            Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
-            <button onClick={handleSubmit}>Zaloguj</button>
-        </form>
+        <AuthFormWraper>
+            <form className={style.form}>
+                Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
+                Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
+                <button onClick={handleSubmit}>Zaloguj</button>
+            </form>
+        </AuthFormWraper>
     )
 }
 

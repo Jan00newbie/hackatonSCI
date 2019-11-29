@@ -1,16 +1,22 @@
-import React, { Fragment } from 'react'
+import React from 'react'
+import Modal from './Modal/Modal'
+import { useHistory } from "react-router-dom";
 
-export const AuthFormWraper = ({children}) => {
+const AuthFormWraper = ({children}) => {
     const history = useHistory()
 
     const handleBack = (e) =>{
         e.preventDefault()
         history.goBack()
     }
+    
     return (
-        <Fragment>
+        <Modal>
             {children}
             <button onClick={handleBack}>Zamknij</button>
-        </Fragment>
+        </Modal>
     )
 }
+
+
+export default AuthFormWraper 

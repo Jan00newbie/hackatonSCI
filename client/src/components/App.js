@@ -7,28 +7,29 @@ import Main from './Routes/Main'
 import SiteNotFound from './Routes/SiteNotFound'
 import Events from './Routes/Events/Events'
 import Login from './Routes/Login/Login'
-import Modal from './Layout/Modal/Modal'
+import Register from './Routes/Register/Register'
 
 const App = () => {
     const location = useLocation();
     
     const background = location.state && location.state.background
-
+    console.log(background);
+    
     return (
         <Fragment>
             <Header />
             <div className="container">
-                <Switch location={background || location}>
+                {background && 
+                    (<Switch location={location}>
+                        <Route exact path="/login" component={Login}/>
+                        <Route exact path="/register" component={Register}/>
+                    </Switch>)
+                }
+                <Switch location={location}>
                     <Route exact path="/" component={Main}/>
                     <Route exact path="/events" component={Events}/>
                     <Route component={SiteNotFound}/>
                 </Switch>
-
-                {background && <Route path="/login" children={
-                    <Modal>
-                        <Login />
-                    </Modal>
-                }/>}
             </div>
         </Fragment>
     )
