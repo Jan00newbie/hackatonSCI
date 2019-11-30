@@ -1,7 +1,5 @@
-import React, { useState } from 'react'
+import React, { useState, Fragment } from 'react'
 import style from './register.module.scss'
-import AuthFormWraper from '../../Layout/AuthFormWraper'
-
 
 const Register = () => {
     
@@ -20,13 +18,11 @@ const Register = () => {
         console.log('logging ...')
     }
     return (
-        <AuthFormWraper>
-            <form className={style.form}>
-                Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
-                Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
-                <button onClick={handleSubmit}>Zarejestruj</button>
-            </form>
-        </AuthFormWraper>
+        <Fragment>
+            Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
+            Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
+            <button onClick={handleSubmit}>Zarejestruj</button>
+        </Fragment>
     )
 }
 

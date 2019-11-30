@@ -31,6 +31,8 @@ const Filters = () => {
                 Data
                 <input className={style.input} type="text" placeholder='Proszę wpisz nazwę...'/>
             </label>
+
+            <button className={style.button}>Wyszukaj</button>
         </div>
     )
 }

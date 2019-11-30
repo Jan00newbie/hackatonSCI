@@ -8,22 +8,24 @@ import SiteNotFound from './Routes/SiteNotFound'
 import Events from './Routes/Events/Events'
 import Login from './Routes/Login/Login'
 import Register from './Routes/Register/Register'
+import Modal from './Layout/Modal/Modal'
 
 const App = () => {
     const location = useLocation();
     
-    const background = location.state && location.state.background
-    console.log(background);
+    const modal = location.state && location.state.modal
     
     return (
         <Fragment>
             <Header />
             <div className="container">
-                {background && 
-                    (<Switch location={location}>
-                        <Route exact path="/login" component={Login}/>
-                        <Route exact path="/register" component={Register}/>
-                    </Switch>)
+                {modal && 
+                    (<Modal>
+                        <Switch location={modal}>
+                            <Route exact path="/login" component={Login}/>
+                            <Route exact path="/register" component={Register}/>
+                        </Switch>
+                    </Modal>)
                 }
                 <Switch location={location}>
                     <Route exact path="/" component={Main}/>

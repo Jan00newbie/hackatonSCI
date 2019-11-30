@@ -24,7 +24,9 @@
     outline: none;
 }
 
-
 :local(.title){
     color: $green;
+}
+:local(.button){
+    margin-top: 20px;
 }

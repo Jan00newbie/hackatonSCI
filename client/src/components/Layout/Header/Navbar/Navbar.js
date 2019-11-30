@@ -3,20 +3,18 @@ import {Link, useLocation} from 'react-router-dom'
 
 const Navbar = () => {
     const location = useLocation()
-    const links = ['events', 'xd', 'login']
+
     return (
         <nav style={{width:'250px'}}>
             <div className='shadow nav__link'>
                 <Link to={{
-                    pathname:`/login`,
-                    state: {background:location}}}>
+                    state: {modal:{...location, pathname:'/login'}}}}>
                         zaloguj
                 </Link>
             </div>
             <div className='shadow nav__link'>
                 <Link to={{
-                    pathname:`/register`,
-                    state: {background:location}}}>
+                    state: {modal:{...location, pathname:'/register'}}}}>
                         dołącz
                 </Link>
             </div>

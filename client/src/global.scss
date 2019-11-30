@@ -46,6 +46,19 @@ nav {
     font-size: 25px;
 }
 
+button{
+    cursor: pointer;
+    padding: .5em;
+    background-color: white;
+    border: 1px solid;
+    outline: none;
+}
+
+button:hover{
+    background-color: inherit;
+    color: white;
+}
+
 a{
     text-decoration: none;
     cursor: pointer;

@@ -1,7 +1,4 @@
-import React, { useState } from 'react'
-
-import AuthFormWraper from '../../Layout/AuthFormWraper'
-
+import React, { useState, Fragment } from 'react'
 import style from './login.module.scss'
 
 const Login = () => {
@@ -22,13 +19,11 @@ const Login = () => {
     }
 
     return (
-        <AuthFormWraper>
-            <form className={style.form}>
-                Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
-                Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
-                <button onClick={handleSubmit}>Zaloguj</button>
-            </form>
-        </AuthFormWraper>
+        <Fragment>
+            Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
+            Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
+            <button onClick={handleSubmit}>Zaloguj</button>
+        </Fragment>
     )
 }
 

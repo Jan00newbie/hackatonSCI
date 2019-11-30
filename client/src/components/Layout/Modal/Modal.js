@@ -1,14 +1,27 @@
 import React from "react";
 import { createPortal } from "react-dom";
 import style from './modal.module.scss'
-console.log(style);
 
-const Modal = ({ children }) =>
-  createPortal(
+import { useHistory } from "react-router-dom";
+
+const Modal = ({ children }) =>{
+  const history = useHistory()
+
+  const handleBack = (e) => {
+    e.preventDefault()
+    history.goBack()
+  }
+  
+  return createPortal(
     <div className={style.modal}>
+      <div className={style.content}>
         {children}
+        <button onClick={handleBack}>Zamknij</button>
+      </div>
     </div>,
-    document.querySelector('#modal_root'));
+    document.querySelector('#modal_root')
+  );
+}
 
 
 export default Modal

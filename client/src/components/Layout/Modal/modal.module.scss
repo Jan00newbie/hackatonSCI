@@ -9,3 +9,9 @@
     right: 0;
     background-color: rgba(0,0,0,.2);
 }
+
+:local(.content) {
+    width: 300px;
+    padding: 2em;
+    background-color: white;
+}
