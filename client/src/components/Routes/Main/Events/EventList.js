@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import Event from './Event/Event'
 
 const EventList = ({events}) => {

@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import './var.scss';
 
 *, *::after, *::before{
     margin: 0;
@@ -38,7 +39,7 @@ nav {
 
 .nav__link{
     background-color: white;
-    color: #BB2528;
+    color: $red;
     padding: .3em 0;
     min-width: 4em;
     text-align: center;
@@ -55,8 +56,15 @@ button{
 }
 
 button:hover{
-    background-color: inherit;
     color: white;
+}
+
+.btn_red:hover {
+    background-color: $red;
+}
+
+.btn_green:hover {
+    background-color: $red;
 }
 
 a{

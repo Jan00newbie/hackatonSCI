@@ -1,21 +1,23 @@
 import React from 'react'
-import {Link, useLocation} from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 const Navbar = () => {
     const location = useLocation()
 
     return (
-        <nav style={{width:'250px'}}>
+        <nav style={{ width: '250px' }}>
             <div className='shadow nav__link'>
                 <Link to={{
-                    state: {modal:{...location, pathname:'/login'}}}}>
-                        zaloguj
+                    state: { modal: { ...location, pathname: '/login' } }
+                }}>
+                    zaloguj
                 </Link>
             </div>
             <div className='shadow nav__link'>
                 <Link to={{
-                    state: {modal:{...location, pathname:'/register'}}}}>
-                        dołącz
+                    state: { modal: { ...location, pathname: '/register' } }
+                }}>
+                    dołącz
                 </Link>
             </div>
             <div className='shadow nav__link'>

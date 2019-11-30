@@ -2,7 +2,7 @@ import React from 'react'
 
 import style from './event.module.scss'
 
-import boast from '../../../../img/boast.svg'
+import boast from '../../../../../img/boast.svg'
 
 const Event = ({title, image, description}) => {
     const date = "23.23.1900"
