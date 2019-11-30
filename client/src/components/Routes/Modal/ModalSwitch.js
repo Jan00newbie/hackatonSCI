@@ -8,13 +8,15 @@ import Register from '../Main/Register/Register'
 
 const ModalSwitch = () => {
     const location = useLocation()
-    return (
-        <Modal>
-            <Switch location={location}>
+    const modal = location.state && location.state.modal
+    return modal
+        ? <Modal>
+            <Switch location={modal}>
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/register" component={Register} />
             </Switch>
-        </Modal>)
+          </Modal>
+        : null
 }
 
 export default ModalSwitch
