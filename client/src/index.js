@@ -1,6 +1,6 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import {BrowserRouter as Router} from 'react-router-dom'
+import { BrowserRouter as Router } from 'react-router-dom'
 
 import './global.scss'
 
@@ -17,5 +17,5 @@ ReactDOM.render(
             </Router>
         </AuthProvider>
     </AlertProvider>
-  ,
-  document.querySelector('#root'))
+    ,
+    document.querySelector('#root'))
