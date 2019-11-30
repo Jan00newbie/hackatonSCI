@@ -1,0 +1,20 @@
+
+button{
+    cursor: pointer;
+    padding: .5em;
+    background-color: white;
+    border: 1px solid;
+    outline: none;
+}
+
+button:hover{
+    color: white;
+}
+
+.btn_red:hover {
+    background-color: $red;
+}
+
+.btn_green:hover {
+    background-color: $red;
+}

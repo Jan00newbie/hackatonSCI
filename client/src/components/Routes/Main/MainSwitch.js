@@ -4,6 +4,8 @@ import { Switch, Route, useLocation } from 'react-router-dom'
 import Main from './Main'
 import Events from './Events/Events'
 import SiteNotFound from './SiteNotFound'
+import Register from './Register/Register'
+import Login from './Login/Login'
 
 
 const MainSwitch = () => {
@@ -13,6 +15,8 @@ const MainSwitch = () => {
             <Switch location={location}>
                 <Route exact path="/" component={Main} />
                 <Route exact path="/events" component={Events} />
+                <Route exact path="/login" component={Login} />
+                <Route exact path="/register" component={Register} />
                 <Route component={SiteNotFound} />
             </Switch>
         </div>);

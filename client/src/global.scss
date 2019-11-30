@@ -47,45 +47,7 @@ nav {
     font-size: 25px;
 }
 
-button{
-    cursor: pointer;
-    padding: .5em;
-    background-color: white;
-    border: 1px solid;
-    outline: none;
-}
-
-button:hover{
-    color: white;
-}
-
-.btn_red:hover {
-    background-color: $red;
-}
-
-.btn_green:hover {
-    background-color: $red;
-}
-
 a{
     text-decoration: none;
     cursor: pointer;
-}
-
-.container{
-    width: 90%;
-    margin:0 auto;
-    padding: 1em 0;
-}
-
-@media screen and (min-width: 40rem){
-    .container{
-        width: 85%;
-    }
-}
-
-@media screen and (min-width: 55rem){
-    .container{
-        width: 80%;
-    }
 }

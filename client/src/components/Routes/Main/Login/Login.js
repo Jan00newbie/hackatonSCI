@@ -2,28 +2,32 @@ import React, { useState, Fragment } from 'react'
 import style from './login.module.scss'
 
 const Login = () => {
-    
+
     const [input, setInput] = useState({
-        name:'',
+        name: '',
         password: ''
     })
 
-    const handleChange = (e) =>{
+    const handleChange = (e) => {
         e.preventDefault()
-        setInput({...input, [e.target.name]: e.target.value})
+        setInput({ ...input, [e.target.name]: e.target.value })
     }
 
-    const handleSubmit = (e) =>{
+    const handleSubmit = (e) => {
         e.preventDefault()
         console.log('logging ...')
     }
 
     return (
-        <Fragment>
-            Imie: <input type="text" name="name" onChange={handleChange}  value={input.name}/>
-            Hasło: <input type="password" name="password" onChange={handleChange} value={input.password}/>
+        <form className={style.form}>
+            <label htmlFor="name">
+                Imie: <input type="text" name="name" onChange={handleChange} value={input.name} />
+            </label>
+            <label htmlFor="name">
+                Hasło: <input type="password" name="password" onChange={handleChange} value={input.password} />
+            </label>
             <button onClick={handleSubmit}>Zaloguj</button>
-        </Fragment>
+        </form>
     )
 }
 
