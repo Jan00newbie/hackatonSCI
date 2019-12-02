@@ -32,7 +32,7 @@ const AuthState = props => {
         dispath({type: LOGOUT})
     }
 
-    const authHandler = userLoginData => {
+    const loginHandler = userLoginData => {
         
         const header = {
             method:'POST',
@@ -41,6 +41,7 @@ const AuthState = props => {
         
         request('/auth', header)
         .then(data => {
+            console.log(data);
             
             if (!data.token){
                 throw new Error('Problem with authentication! Please log again')
@@ -70,13 +71,8 @@ const AuthState = props => {
     }
 
     const loadUserHandler = () => {
-        const header = {
-            headers:{
-                "Authorization": `Brearer ${localStorage.getItem('token')}`
-            }
-        };
 
-        request('/user', header)
+        request('/user')
         .then(data => {
             dispath({type: LOAD_USER, payload:data})
         })
@@ -84,7 +80,7 @@ const AuthState = props => {
     }
     return (
         <authContext.Provider value={{
-            auth: authHandler,
+            login: loginHandler,
             loadUser: loadUserHandler,
             isAuthenticated: state.isAuthenticated,
             user:state.user,

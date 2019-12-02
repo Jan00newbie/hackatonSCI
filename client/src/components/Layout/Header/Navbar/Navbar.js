@@ -5,7 +5,7 @@ const Navbar = () => {
     const location = useLocation()
 
     return (
-        <nav style={{ width: '250px' }}>
+        <nav >
             <div className='shadow nav__link'>
                 <Link to={{
                     state: { modal: { ...location, pathname: '/login' } }

@@ -13,23 +13,13 @@ import {
 } from '../types'
 
 
-const AuthState = props => {
-    const initialState = {
-        isAuthenticated: !!localStorage.getItem('token'),
-        user: null,
-        error: null
-    }
+const EventState = props => {
+    const initialState = []
     const [state, dispath] = useReducer(eventReducer, initialState)
     
     const { setAlert } = useContext(alertContext)
 
-    const handleRequestError = ({payload, type}) => {
-        setAlert(payload, type)
-        logoutHandler()
-    }
-
-    const logoutHandler = () => {
-        dispath({type: LOGOUT})
+    const handleRequestError = () => {
     }
 
     const authHandler = userLoginData => {

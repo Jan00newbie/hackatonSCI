@@ -7,7 +7,7 @@ import {
 export default (state, change) => {
     switch (change.type) {
 
-        case AUTH_SUCCESS:        
+        case AUTH_SUCCESS:
             localStorage.setItem('token', change.payload)
             return {
                 ...state,
@@ -17,16 +17,17 @@ export default (state, change) => {
         case LOAD_USER:
             return {
                 ...state,
-                user:change.payload
+                user: change.payload
             };
-    
+
         case LOGOUT:
             localStorage.removeItem('token')
             return {
                 ...state,
                 isAuthenticated: false,
-                user: null,            }
-        
+                user: null,
+            }
+
         default:
             throw new Error("Bad action!")
     }
